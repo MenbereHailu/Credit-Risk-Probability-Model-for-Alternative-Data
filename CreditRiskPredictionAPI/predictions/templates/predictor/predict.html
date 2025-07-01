@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Risk Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+
+        form {
+            width: 60%;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        button {
+            grid-column: span 2;
+            padding: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        h2 {
+            text-align: center;
+            color: #27ae60;
+            margin-top: 20px;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Credit Risk Prediction</h1>
+    <form method="post">
+        {% csrf_token %}
+
+        <!-- Row 1 -->
+        <div>
+            <label for="TransactionId">Transaction Id:</label>
+            <input type="number" id="TransactionId" name="TransactionId" value="{{ form.TransactionId.value }}">
+
+            {% if form.TransactionId.errors %}
+            <div class="error">{{ form.TransactionId.errors }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Row 2 -->
+        <div>
+            <label for="AccountId">Account Id:</label>
+            <input type="number" id="AccountId" name="AccountId" value="{{ form.AccountId.value }}">
+            {% if form.AccountId.errors %}
+            <div class="error">{{ form.AccountId.errors }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Row 3 -->
+        <div>
+            <label for="SubscriptionId">Subscription Id:</label>
+            <input type="number" id="SubscriptionId" name="SubscriptionId" value="{{ form.SubscriptionId.value }}">
+            {% if form.SubscriptionId.errors %}
+            <div class="error">{{ form.SubscriptionId.errors }}</div>
+            {% endif %}
+        </div>
+        <div>
+            <label for="CustomerId">Customer Id:</label>
+            <input type="number" id="CustomerId" name="CustomerId" value="{{ form.CustomerId.value }}">
+            {% if form.CustomerId.errors %}
+            <div class="error">{{ form.CustomerId.errors }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Row 5 -->
+        <div>
+            <label for="ProviderId">Product Id:</label>
+            <select id="ProviderId" name="ProviderId">
+                <option value="1">ProviderId_1</option>
+                <option value="2">ProviderId_2</option>
+                <option value="3">ProviderId_3</option>
+                <option value="4">ProviderId_4</option>
+                <option value="5">ProviderId_5</option>
+                <option value="6">ProviderId_6</option>
+            </select>
+            {% if form.ProviderId.errors %}
+            <div class="error">{{ form.ProviderId.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="ProductId">Product Id:</label>
+            <select id="ChannelId" name="ProductId">
+                <option value="1">ProductId_1</option>
+                <option value="2">ProductId_2</option>
+                <option value="3">ProductId_3</option>
+                <option value="4">ProductId_4</option>
+                <option value="5">ProductId_5</option>
+                <option value="6">ProductId_6</option>
+
+                <option value="10">ProductId_10</option>
+                <option value="11">ProductId_11</option>
+                <option value="12">ProductId_12</option>
+                <option value="13">ProductId_13</option>
+                <option value="14">ProductId_14</option>
+                <option value="15">ProductId_15</option>
+            </select>
+            {% if form.ProductId.errors %}
+            <div class="error">{{ form.ProductId.errors }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Row 5 -->
+        <div>
+            <label for="ProductCategory">Product Category:</label>
+            <select id="ProductCategory" name="ProductCategory">
+                <option value="financial_services">financial services</option>
+                <option value="airtime">airtime</option>
+                <option value="utility_bill">utility bill</option>
+                <option value="data_bundles">data bundles</option>
+                <option value="tv">tv</option>
+                <option value="ticket">ticket</option>
+                <option value="movies">movies</option>
+                <option value="transport">transport</option>
+                <option value="other">other</option>
+            </select>
+            {% if form.ProductCategory.errors %}
+            <div class="error">{{ form.ProductCategory.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="ChannelId">Channel Id:</label>
+            <select id="ChannelId" name="ChannelId">
+                <option value="1">ChannelId_1</option>
+                <option value="2">ChannelId_2</option>
+                <option value="3">ChannelId_3</option>
+                <option value="5">ChannelId_5</option>
+            </select>
+            {% if form.ChannelId.errors %}
+            <div class="error">{{ form.ChannelId.errors }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Row 5 -->
+        <div>
+            <label for="Amount">Amount:</label>
+            <input type="number" id="Amount" name="Amount" value="{{ form.Amount.value }}">
+            {% if form.Amount.errors %}
+            <div class="error">{{ form.Amount.errors }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Row 5 -->
+        <div>
+            <label for="TransactionStartTime">Transaction Start Time:</label>
+            <input type="date" id="TransactionStartTime" name="TransactionStartTime"
+                value="{{ form.TransactionStartTime.value }}">
+            {% if form.TransactionStartTime.errors %}
+            <div class="error">{{ form.TransactionStartTime.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="PricingStrategy">Pricing Strategy:</label>
+            <input type="number" id="PricingStrategy" name="PricingStrategy" value="{{ form.PricingStrategy.value }}">
+            {% if form.PricingStrategy.errors %}
+            <div class="error">{{ form.PricingStrategy.errors }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Row 5 -->
+        <div>
+            <label for="FraudResult">Fraud Result:</label>
+            <input type="number" id="FraudResult" name="FraudResult" value="{{ form.FraudResult.value }}">
+            {% if form.FraudResult.errors %}
+            <div class="error">{{ form.FraudResult.errors }}</div>
+            {% endif %}
+        </div>
+        <!-- Submit Button -->
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction is not None %}
+    {% if prediction == 1 %}
+    <h2>Cridit Risk: No Risk</h2>
+    {% else %}
+    <h2 style="color: red;">Cridit Risk: High Risk</h2>
+    {% endif %}
+    {% elif form.errors %}
+    <h2 style="color: red;">There was an error in the form. Please correct it and try again.</h2>
+    {% endif %}
+
+
+</body>
+
+</html>
